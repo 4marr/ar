@@ -4,6 +4,10 @@ window.addEventListener('load', function() {
     loader.style.display = 'none';
 });
 
+function back(){
+    window.open("/ar/index.html")
+}
+
 function faq() {
     document.querySelector(".contentFAQ").style.display = "flex"
 }
