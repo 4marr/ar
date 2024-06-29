@@ -5,7 +5,7 @@ window.addEventListener('load', function() {
 });
 
 function back(){
-    window.open("/ar/index.html" ,"_self")
+    window.open("/ar/index.html", "_self")
 }
 
 function faq() {
