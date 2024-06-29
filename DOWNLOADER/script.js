@@ -40,21 +40,23 @@ async function searchVideo() {
         if (url.includes('instagram.com')) {
             response = await fetch(ig);
             data = await response.json();
+            downloadButton.style.display = "none";
             data.result.forEach((item, index) => {
                 downloadLinks += `<a href="${item.url}" download>Download File ${index + 1}</a>`;
             });
         } else if (url.includes('tiktok.com')) {
             response = await fetch(tt);
             data = await response.json();
+            downloadButton.style.display = "none";
 
             if (data.result.type === 'image') {
-                downloadLinks += `<p>${data.result.desc} [${data.result.author.nickname}]</p>`;
+                downloadLinks += `<p>${data.result.desc} │ ${data.result.author.nickname}</p>`;
                 data.result.images.forEach((imageUrl, index) => {
                     downloadLinks += `<a href="${imageUrl}" download>Download Image ${index + 1}</a>`;
                 });
                 downloadLinks += `<a href="${data.result.music}" target="_blank" download>Download Music Audio</a>`;
             } else {
-                downloadLinks += `<p>${data.result.desc} [${data.result.author.nickname}]</p>`;
+                downloadLinks += `<p>${data.result.desc} │ ${data.result.author.nickname}</p>`;
                 downloadLinks += `
                     <a href="${data.result.video1}" target="_blank" download>Download Video</a>
                     <a href="${data.result.video_hd}" target="_blank" download>Download HD Video</a>
@@ -84,6 +86,7 @@ async function searchVideo() {
         }*/ else if (/(reel|fb|facebook\.com|fb\.watch)/i.test(url)) {
             response = await fetch(fb);
             data = await response.json();
+            downloadButton.style.display = "none";
         
             const { hd, sd } = data.result;
         
@@ -97,7 +100,9 @@ async function searchVideo() {
         } else if (url.includes('spotify.com')) {
             response = await fetch(sptfy);
             data = await response.json();
-            downloadLinks += `<p>${data.data.title} [${data.data.artist}]</p>`;
+            downloadButton.style.display = "none";
+
+            downloadLinks += `<p>${data.data.title} │ ${data.data.artist} </p>`;
             downloadLinks += `<a href="${data.data.download}" download>Download Musik</a>`;
         } else {
             throw new Error('Unsupported URL!, Hanya support fb/ig/tt/sptfy');

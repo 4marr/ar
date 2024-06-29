@@ -20,6 +20,10 @@ body{
     transition: ease 0.5s;
 }
 
+p{
+    font-size: 0.90rem;
+}
+
 /*.dashboard{
     padding: 20px;
 }
@@ -36,12 +40,12 @@ body{
     background: #F5f5f5;
     box-shadow: 5px 5px 0 #000000;
     padding: 50px;
-    margin: 0 10px;
+    margin: 10px;
     border-radius: 30px;
 }
 
 .dashboard .list a{
-    font-size: 1rem;
+    font-size: 0.90rem;
     width: 100%;
     padding: 10px;
     margin: 10px;
@@ -92,4 +96,10 @@ body{
     color: #000000;
     box-shadow: 0 0 0 #000000;
     background: #E3DFF2;
+}
+
+.footer{
+    position: fixed;
+    bottom: 0;
+    margin: 0 0 20px 0;
 }
