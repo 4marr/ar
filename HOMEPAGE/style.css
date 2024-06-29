@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+body{
+    background: #FFFFFF;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    transition: ease 0.5s;
+}
+
+/*.dashboard{
+    padding: 20px;
+}
+
+.dashboard h1{
+    margin-bottom: 20px;
+}
+*/
+.dashboard .list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #F5f5f5;
+    box-shadow: 5px 5px 0 #000000;
+    padding: 50px;
+    border-radius: 30px;
+}
+
+.dashboard .list a{
+    font-size: 1rem;
+    width: 100%;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 30px;
+    box-shadow: 5px 5px 0 #000000;
+    text-align: center;
+    color: #FFFFFF;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: ease 0.5s;
+}
+
+.list a:nth-child(1){
+    background: #69D2E7;
+}
+
+.list a:nth-child(2){
+    background: #E3A018;
+}
+
+.list a:nth-child(3){
+    background: #FF59B4;
+}
+
+.list a:nth-child(4){
+    background: #9723C9;
+}
+
+.list a:nth-child(1):hover{
+    color: #000000;
+    box-shadow: 0 0 0 #000000;
+    background: #DAF5F0;
+}
+
+.list a:nth-child(2):hover{
+    color: #000000;
+    box-shadow: 0 0 0 #000000;
+    background: #FDFD96;
+}
+
+.list a:nth-child(3):hover{
+    color: #000000;
+    box-shadow: 0 0 0 #000000;
+    background: #FCDFFF;
+}
+
+.list a:nth-child(4):hover{
+    color: #000000;
+    box-shadow: 0 0 0 #000000;
+    background: #E3DFF2;
+}
