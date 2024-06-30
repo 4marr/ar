@@ -21,7 +21,7 @@ async function searchVideo() {
             return;
         }
         //const youtubeRegex = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(?:-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|live\/|v\/)?)([\w\-]+)(\S+)?$/;
-        const supportedUrls = ['instagram.com', 'tiktok.com', 'facebook.com', 'fb.watch', 'reel', 'spotify.com'];
+        const supportedUrls = ['instagram.com', 'tiktok.com', 'facebook.com', 'fb.watch', 'reel', 'spotify.com', 'youtu.be'];
 
         if (!supportedUrls.some(supportedUrl => url.includes(supportedUrl))) {
             document.getElementById('downloadLinks').innerHTML = `<p style="color: #ff0000;">Unsupported URL! Hanya support tt/ig/fb</p>`;
@@ -30,7 +30,8 @@ async function searchVideo() {
 
         const ig = `https://api.nyxs.pw/dl/ig?url=${encodeURIComponent(url)}`;
         const tt = `https://api.nyxs.pw/dl/tiktok?url=${encodeURIComponent(url)}`;
-        const yt = `https://api.nyxs.pw/dl/yt?url=${encodeURIComponent(url)}`;
+        //const yt = `https://api.nyxs.pw/dl/yt?url=${encodeURIComponent(url)}`;
+        const yt = `https://itzpire.com/download/youtube?url=${encodeURIComponent(url)}`
         const fb = `https://api.nyxs.pw/dl/fb?url=${encodeURIComponent(url)}`;
         const sptfy = `https://itzpire.com/download/spotify?url=${encodeURIComponent(url)}`
 
@@ -104,6 +105,15 @@ async function searchVideo() {
 
             downloadLinks += `<p>${data.data.title} │ ${data.data.artist} </p>`;
             downloadLinks += `<a href="${data.data.download}" download>Download Musik</a>`;
+        } else if (url.includes('youtu.be')) {
+            response = await fetch(yt);
+            data = await response.json();
+            console.log(data)
+            downloadButton.style.display = "none";
+
+            downloadLinks += `<p>${data.data.video.title} │ ${data.data.video.channel} </p>`;
+            downloadLinks += `<a href="${data.data.video.url}" download>Download Video</a>`;
+            downloadLinks += `<a href="${data.data.audio.url}" download>Download Musik</a>`;
         } else {
             throw new Error('Unsupported URL!, Hanya support fb/ig/tt/sptfy');
         }
