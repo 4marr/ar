@@ -24,7 +24,7 @@ async function searchVideo() {
         const supportedUrls = ['instagram.com', 'tiktok.com', 'facebook.com', 'fb.watch', 'reel', 'spotify.com', 'youtu.be'];
 
         if (!supportedUrls.some(supportedUrl => url.includes(supportedUrl))) {
-            document.getElementById('downloadLinks').innerHTML = `<p style="color: #ff0000;">Unsupported URL! Hanya support tt/ig/fb</p>`;
+            document.getElementById('downloadLinks').innerHTML = `<p style="color: #ff0000;">Unsupported URL! Hanya support ig/tt/fb/sptfy/yt</p>`;
             return;
         }
 
@@ -115,7 +115,7 @@ async function searchVideo() {
             downloadLinks += `<a href="${data.data.video.url}" download>Download Video</a>`;
             downloadLinks += `<a href="${data.data.audio.url}" download>Download Musik</a>`;
         } else {
-            throw new Error('Unsupported URL!, Hanya support fb/ig/tt/sptfy');
+            throw new Error('Unsupported URL!, Hanya support fb/ig/tt/sptfy/yt');
         }
         console.log('URL:', url);
     console.log('Response:', response);
@@ -123,8 +123,8 @@ async function searchVideo() {
     console.log('Download Links:', downloadLinks);
         document.getElementById('downloadLinks').innerHTML = downloadLinks;
     } catch (error) {
-        if (error.message === 'Unsupported URL!, Hanya support fb/ig/tt/yt') {
-            alert("Unsupported URL!, Hanya support fb/ig/tt/yt");
+        if (error.message === 'Unsupported URL!, Hanya support ig/tt/fb/sptfy/yt') {
+            document.getElementById('downloadLinks').innerHTML = `<p style="color: #ff0000;">Unsupported URL! Hanya support ig/tt/fb/sptfy/yt</p>`;
         } else {
             document.getElementById('downloadLinks').innerHTML = `<p style="color: #ff0000;">Terjadi Error, pastikan link yg ingin di download bukanlah private atau coba periksa koneksi internet anda</p>`;
         }
