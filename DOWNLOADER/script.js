@@ -1,6 +1,6 @@
 async function searchVideo() {
     const downloadButton = document.querySelector('button');
-    downloadButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Downloading...';
+    downloadButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Searching...';
     document.getElementById('downloadLinks').style.display = "inline-block";
     document.getElementById('downloadLinks').innerHTML = "";
 
@@ -125,5 +125,7 @@ async function searchVideo() {
 }
 
 function getValue(){
+    const downloadButton = document.querySelector('button');
+    downloadButton.style.display = "block";
     document.getElementById('downloadLinks').style.display = "none";
 }
