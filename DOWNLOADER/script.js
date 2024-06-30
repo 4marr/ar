@@ -136,6 +136,6 @@ async function searchVideo() {
 
 function getValue(){
     const downloadButton = document.querySelector('button');
-    downloadButton.style.display = "block";
+    downloadButton.style.display = "flex";
     document.getElementById('downloadLinks').style.display = "none";
 }
