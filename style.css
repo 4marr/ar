@@ -3,6 +3,7 @@
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 .flex{
@@ -24,7 +25,50 @@ p{
     font-size: 0.90rem;
 }
 
-/*.dashboard{
+.welcome{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.welcome .welcome-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 50px;
+    width: 80%;
+    margin: 0 20px;
+    background: #FFFFFF;
+    border-radius: 10px;
+    transition: ease 0.5;
+}
+
+.welcome-card h2{
+    font-size: 1.2rem;
+}
+
+.welcome-card button{
+    outline: none;
+    color: #FFFFFF;
+    background: #9723C9;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    padding: 15px 10px;
+    margin: 40px 0 0 0;
+    width: 50%;
+    font-weight: 600;
+    transition: ease 0.5s;
+}
+
+.welcome-card button:hover{
+    background: #A388EE;
+}
+
+/*
+.dashboard{
     padding: 20px;
 }
 
@@ -41,7 +85,8 @@ p{
     box-shadow: 5px 5px 0 #000000;
     padding: 50px;
     margin: 10px;
-    border-radius: 30px;
+    border-radius: 10px;
+    border: 2px solid #000000;
 }
 
 .dashboard .list a{
@@ -49,8 +94,9 @@ p{
     width: 100%;
     padding: 10px;
     margin: 10px;
-    border-radius: 30px;
+    border-radius: 10px;
     box-shadow: 5px 5px 0 #000000;
+    border: 2px solid #000000;
     text-align: center;
     color: #FFFFFF;
     text-decoration: none;
@@ -67,10 +113,18 @@ p{
 }
 
 .list a:nth-child(3){
-    background: #FF59B4;
+    background: #FF69B4;
 }
 
 .list a:nth-child(4){
+    background: #FF6B6B;
+}
+
+.list a:nth-child(5){
+    background: #7FBC8C;
+}
+
+.list a:nth-child(6){
     background: #9723C9;
 }
 
@@ -93,6 +147,18 @@ p{
 }
 
 .list a:nth-child(4):hover{
+    color: #000000;
+    box-shadow: 0 0 0 #000000;
+    background: #F8D6B3;
+}
+
+.list a:nth-child(5):hover{
+    color: #000000;
+    box-shadow: 0 0 0 #000000;
+    background: #B5D2AD;
+}
+
+.list a:nth-child(6):hover{
     color: #000000;
     box-shadow: 0 0 0 #000000;
     background: #E3DFF2;

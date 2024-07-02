@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloader Playlist Spotify</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Symbols+Outlined: opsz, wght, FILL, GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard">
+            <h1>Spotify</h1>
+            <div class="form">
+                <input type="text" id="urlSosmed" placeholder="Enter URL" oninput="getValue()">
+                <div class="container-button">
+                    <button onclick="searchPlaylist()">Search</button>
+                </div>
+            </div>
+            <div id="downloadLinks"></div>
+        </div>
+    </div>
+    <div class="footer"><br>
+        <p>v1.0.2 | Made with ❤ - All right reserved by ar.</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
