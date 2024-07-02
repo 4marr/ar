@@ -64,28 +64,7 @@ async function searchPlaylist(){
                     </div>
                     </div>
                     `;
-                    document.getElementById("downloadLinks").addEventListener("click", function(){
-                    var urlSong = item.track.external_urls.spotify
-                    const downloadSong = `https://api.mininxd.my.id/spotify?url=${encodeURIComponent(urlSong)}`
-                    fetch(downloadSong)
-                    .then(res => res.json())
-                    .then(data => {
-                        const containerDownload = document.getElementById("download-song")
-                        containerDownload.setAttribute("data-audio-url", data.data.download)
-                        console.log(data.data.download)
-                    })
-                });
             })
-            
-        
-        
-            function downloadPlaylistButton(){
-                const trackUrl = document.getAttribute("data-audio-url");
-                const a = document.createElement("a");
-                a.href = trackUrl;
-                document.body.appendChild(a);
-                a.click();
-            }
     } else {
         throw new Error('Unsupported URL!');
     }
