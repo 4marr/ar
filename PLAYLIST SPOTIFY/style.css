@@ -64,6 +64,46 @@ body {
     flex-direction: column;
 }
 
+#downloadLinks #container-track {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+#downloadLinks #container-image-track {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#container-track #image-track {
+    width: 60%;
+    max-width: 200px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#container-track #artist {
+    font-size: 0.90rem;
+}
+
+#container-download-track {
+    margin: 50px 0 0 0;
+}
+
+#container-track a {
+    background: #1db954;
+    margin: 50px 100px;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 200px;
+    font-size: 0.75rem;
+}
+
 #downloadLinks #container-image-playlist {
     display: flex;
     align-items: center;
@@ -71,36 +111,36 @@ body {
 }
 
 #container-image-playlist #image-playlist {
-    width: 40%;
+    width: 60%;
     display: flex;
     align-items: center;
 }
 
-#downloadLinks h2 {
+#downloadLinks #container-description-playlist h2 {
     margin: 10px 0 0 0;
     font-size: 1rem;
 }
 
-#downloadLinks p:nth-child(3) {
-    font-size: 0.60rem;
+#downloadLinks #container-description-playlist p:nth-child(3) {
+    font-size: 0.75rem;
     margin: 10px 0;
     color: #ccc;
 }
 
-#downloadLinks p:nth-child(4) {
+#downloadLinks #container-description-playlist p:nth-child(4) {
     font-weight: 700;
-    font-size: 0.60rem;
+    font-size: 0.75rem;
 }
 
-#downloadLinks p:nth-child(5) {
+#downloadLinks #container-description-playlist p:nth-child(5) {
     display: flex;
     align-items: center;
-    font-size: 0.60rem;
+    font-size: 0.75rem;
     margin: 10px 0 40px 0;
     color: #ccc;
 }
 
-#downloadLinks p:nth-child(5) span {
+#downloadLinks #container-description-playlist p:nth-child(5) span {
     display: flex;
     align-items: center;
     margin: 0 5px 0 0;
@@ -109,35 +149,34 @@ body {
 
 #container-song {
     display: flex;
-    margin: 10px;
+    margin: 5px;
 }
 
 #image-album {
-    width: 7vw;
+    width: 10%;
+    max-width: 30px;
     object-fit: contain;
+    margin: 10px 0;
 }
 
 #container-downloader-song {
     display: flex;
-    justify-content: space-between;
-
 }
 
 #container-song #container-track {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 0 0 0 10px;
 }
 
 #container-track a {
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     text-decoration: none;
     color: #ffffff;
 }
 
 #container-track p {
-    font-size: 0.55rem;
+    font-size: 0.60rem;
     text-decoration: none;
     color: #ccc;
 }
@@ -154,7 +193,8 @@ body {
     width: 10%;
 }
 
-#download-song span {
+/*#download-song span {
+    display: flex;
     color: #1db954;
     font-size: 1.2rem;
     cursor: pointer;
@@ -165,5 +205,4 @@ body {
 
 #download-song span:hover {
     background: rgb(255, 255, 255, 0.2);
-    
-}
+}*/

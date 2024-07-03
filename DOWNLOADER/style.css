@@ -17,7 +17,7 @@ p {
     font-size: 0.90rem;
 }
 
-.footer {
+/*.footer {
     text-align: center;
     color: #ffffff;
     position: fixed;
@@ -25,7 +25,7 @@ p {
     width: 100%;
     padding: 0px 0;
     background-color: #323232;
-}
+}*/
 
 .flex {
     display: flex;
@@ -49,7 +49,7 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
     margin: 0 20px;
     justify-content: center;
     background-color: #262626;
@@ -69,7 +69,7 @@ input[type="text"] {
     width: 90%;
     padding: 10px;
     border: none;
-    border-radius: 30px;
+    border-radius: 10px;
     margin-bottom: 20px;
     font-size: 16px;
     text-align: center;
@@ -82,7 +82,7 @@ button {
     width: 90%;
     padding: 10px;
     border: none;
-    border-radius: 30px;
+    border-radius: 10px;
     background-color: #69D2E7;
     color: #262626;
     font-size: 16px;
@@ -108,7 +108,7 @@ button:hover {
     margin: 10px 0;
     padding: 10px;
     background-color: #333;
-    border-radius: 30px;
+    border-radius: 10px;
     transition: background-color 0.3s ease;
 }
 

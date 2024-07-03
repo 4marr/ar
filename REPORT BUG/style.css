@@ -22,7 +22,7 @@ body{
 }
 
 p{
-    font-size: 0.90rem;
+    font-size: 0.80rem;
 }
 
 .container{
@@ -49,10 +49,12 @@ p{
 }
 
 .card p {
-    margin: 40px 0 5px 5px;
+    margin: 25px 0 5px 5px;
 }
 
 .card #description{
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
     padding: 10px;
     border: 2px solid #000000;
     border-radius: 10px;
@@ -74,8 +76,10 @@ p{
     border: 2px solid #000000;
     border-radius: 10px;
     padding: 10px;
-    margin: 40px 0 0 0;
+    margin: 25px 0 0 0;
     width: 30%;
+    min-width: 70px;
+    font-size: 0.80rem;
     font-weight: 600;
     transition: ease 0.5s;
 }
@@ -89,4 +93,8 @@ p{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.done p {
+    text-align: center;
 }

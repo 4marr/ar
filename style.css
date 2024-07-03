@@ -84,7 +84,7 @@ p{
     background: #F5f5f5;
     box-shadow: 5px 5px 0 #000000;
     padding: 50px;
-    margin: 10px;
+    margin: 0 10px 20px 10px;
     border-radius: 10px;
     border: 2px solid #000000;
 }
@@ -105,7 +105,7 @@ p{
 }
 
 .list a:nth-child(1){
-    background: #69D2E7;
+    background: #7FBC8C;
 }
 
 .list a:nth-child(2){
@@ -117,11 +117,11 @@ p{
 }
 
 .list a:nth-child(4){
-    background: #FF6B6B;
+    background: #69D2E7;
 }
 
 .list a:nth-child(5){
-    background: #7FBC8C;
+    background: #00995E;
 }
 
 .list a:nth-child(6){
@@ -130,37 +130,37 @@ p{
 
 .list a:nth-child(1):hover{
     color: #000000;
-    box-shadow: 0 0 0 #000000;
-    background: #DAF5F0;
+    box-shadow: 2px 2px 0 #000000;
+    background: #B5D2AD;
 }
 
 .list a:nth-child(2):hover{
     color: #000000;
-    box-shadow: 0 0 0 #000000;
+    box-shadow: 2px 2px 0 #000000;
     background: #FDFD96;
 }
 
 .list a:nth-child(3):hover{
     color: #000000;
-    box-shadow: 0 0 0 #000000;
+    box-shadow: 2px 2px 0 #000000;
     background: #FCDFFF;
 }
 
 .list a:nth-child(4):hover{
     color: #000000;
-    box-shadow: 0 0 0 #000000;
-    background: #F8D6B3;
+    box-shadow: 2px 2px 0 #000000;
+    background: #DAF5F0;
 }
 
 .list a:nth-child(5):hover{
     color: #000000;
-    box-shadow: 0 0 0 #000000;
-    background: #B5D2AD;
+    box-shadow: 2px 2px 0 #000000;
+    background: #C6E8DB;
 }
 
 .list a:nth-child(6):hover{
     color: #000000;
-    box-shadow: 0 0 0 #000000;
+    box-shadow: 2px 2px 0 #000000;
     background: #E3DFF2;
 }
 

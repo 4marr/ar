@@ -24,7 +24,7 @@ async function searchVideo() {
         const supportedUrls = ['instagram.com', 'tiktok.com', 'facebook.com', 'fb.watch', 'reel', 'spotify.com', 'youtu.be'];
 
         if (!supportedUrls.some(supportedUrl => url.includes(supportedUrl))) {
-            document.getElementById('downloadLinks').innerHTML = `<p style="color: #ff0000;">Unsupported URL! Hanya support tt/ig/fb</p>`;
+            document.getElementById('downloadLinks').innerHTML = `<p style="color: #ff0000;">Unsupported URL! Hanya support tt/fb/ig/yt</p>`;
             return;
         }
 
@@ -98,14 +98,14 @@ async function searchVideo() {
                 downloadLinks += `<a href="${sd}" download>Download Video SD</a>`;
             }
         
-        } else if (url.includes('spotify.com')) {
+        } /*else if (url.includes('spotify.com')) {
             response = await fetch(sptfy);
             data = await response.json();
             downloadButton.style.display = "none";
 
             downloadLinks += `<p>${data.data.title} │ ${data.data.artist} </p>`;
             downloadLinks += `<a href="${data.data.download}" download>Download Musik</a>`;
-        } else if (url.includes('youtu.be')) {
+        }*/ else if (url.includes('youtu.be')) {
             response = await fetch(yt);
             data = await response.json();
             console.log(data)
@@ -115,7 +115,7 @@ async function searchVideo() {
             downloadLinks += `<a href="${data.data.video.url}" download>Download Video</a>`;
             downloadLinks += `<a href="${data.data.audio.url}" download>Download Musik</a>`;
         } else {
-            throw new Error('Unsupported URL!, Hanya support fb/ig/tt/sptfy');
+            throw new Error('Unsupported URL!, Hanya support ig/fb/tt/yt');
         }
         console.log('URL:', url);
     console.log('Response:', response);

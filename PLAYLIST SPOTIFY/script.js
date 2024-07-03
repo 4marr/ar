@@ -28,43 +28,69 @@ async function searchPlaylist(){
             data = await response.json();
             downloadButton.style.display = "none";
             
-            downloadLinks += `<p>${data.data.title} │ ${data.data.artist} </p>`;
-            downloadLinks += `<a href="${data.data.download}" download>Download Musik</a>`;
-
-            
+            downloadLinks += `
+            <div id="container-track">
+                <div id="container-image-track">
+                    <img src="${data.data.image}" alt="image_playlist" id="image-track">
+                </div>
+                <h2>${data.data.title}</h2>
+                <p id="artist">${data.data.artist} </p>
+                <div id="container-download-track">
+                    <a href="${data.data.download}" download>Download Musik</a>
+                </div>
+            </div>
+            `;
         } else if (url.includes('spotify.com/playlist')) {
             response = await fetch(sptfyPlaylist);
             let data = await response.json();
             console.log(data)
             console.log(data.description)
             downloadLinks += `
-            <div id="container-image-playlist">
-            <img src="${data.images[0].url}" alt="image_playlist" id="image-playlist">
+
+            <div id="container-description-playlist">
+                <div id="container-image-playlist">
+                    <img src="${data.images[0].url}" alt="image_playlist" id="image-playlist">
+                </div>
+                <h2>${data.name}</h2>
+                <p>${data.description}</p>
+                <p>${data.owner.display_name}</p>
+                <p>
+                    <span class="material-symbols-outlined">language</span>
+                    ${data.tracks.total} songs
+                </p>
             </div>
-            <h2>${data.name}</h2>
-            <p>${data.description}</p>
-            <p>${data.owner.display_name}</p>
-            <p>
-            <span class="material-symbols-outlined">language</span>
-            ${data.tracks.total} songs
-            </p>
             `;
             data.tracks.items.forEach(item => {
                 downloadLinks += `
                 <div id="container-downloader-song">
+                <img src="${item.track.album.images[1].url}" alt="image_album" id="image-album">
                     <div id="container-song">
-                        <img src="${item.track.album.images[1].url}" alt="image_album" id="image-album">
                         <div id="container-track">
                             <a href="">${item.track.name}</a>
                             <p>${item.track.artists[0].name}</p>
                         </div>
                     </div>
-                    <div id="container-download">
-                        <button id="download-song" onclick="downloadPlaylistButton()"><span class="material-symbols-outlined">download</span></button>
-                    </div>
-                    </div>
+                </div>
                     `;
+                    document.getElementById("downloadLinks").addEventListener("click", function(){
+                    var urlSong = item.track.external_urls.spotify
+                    const downloadSong = `https://api.mininxd.my.id/spotify?url=${encodeURIComponent(urlSong)}`
+                    fetch(downloadSong)
+                    .then(res => res.json())
+                    .then(data => {
+                        const containerDownload = document.getElementById("download-song")
+                        containerDownload.setAttribute("data-audio-url", data.data.download)
+                        console.log(data.data.download)
+                    })
+                });
             })
+            /*function downloadPlaylistButton(){
+                const trackUrl = document.getAttribute("data-audio-url");
+                const a = document.createElement("a");
+                a.href = trackUrl;
+                document.body.appendChild(a);
+                a.click();
+            }*/
     } else {
         throw new Error('Unsupported URL!');
     }
@@ -81,7 +107,7 @@ async function searchPlaylist(){
     }
     console.log(error.message);
 } finally {
-        downloadButton.innerHTML = 'Download';
+        downloadButton.innerHTML = 'Search';
     }
 }
 

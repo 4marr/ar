@@ -146,6 +146,11 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.button-action span {
+    -webkit-tap-highlight-color: transparent;
 }
 
 .chatBot .chatBox {
