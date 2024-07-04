@@ -154,7 +154,7 @@ body {
 
 #image-album {
     width: 15%;
-    max-width: 35px;
+    max-width: 45px;
     object-fit: contain;
     margin: 10px 0;
 }
@@ -170,13 +170,13 @@ body {
 }
 
 #container-track a {
-    font-size: 0.75rem;
+    font-size: 0.80rem;
     text-decoration: none;
     color: #ffffff;
 }
 
 #container-track p {
-    font-size: 0.60rem;
+    font-size: 0.65rem;
     text-decoration: none;
     color: #ccc;
 }
