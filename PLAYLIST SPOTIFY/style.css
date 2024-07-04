@@ -154,7 +154,7 @@ body {
 
 #image-album {
     width: 15%;
-    max-width: 50px;
+    max-width: 35px;
     object-fit: contain;
     margin: 10px 0;
 }
