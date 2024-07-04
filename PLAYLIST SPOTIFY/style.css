@@ -153,8 +153,8 @@ body {
 }
 
 #image-album {
-    width: 20%;
-    max-width: 30px;
+    width: 10%;
+    max-width: 50px;
     object-fit: contain;
     margin: 10px 0;
 }
