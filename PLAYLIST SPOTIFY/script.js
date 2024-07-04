@@ -1,6 +1,6 @@
 async function searchPlaylist(){
     const downloadButton = document.querySelector('button');
-    downloadButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Searching...';
+    downloadButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
     document.getElementById('downloadLinks').style.display = "flex";
     document.getElementById('downloadLinks').innerHTML = "";
 
@@ -31,20 +31,21 @@ async function searchPlaylist(){
             downloadLinks += `
             <div id="container-track">
                 <div id="container-image-track">
-                    <img src="${data.data.image}" alt="image_playlist" id="image-track">
+                <img src="${data.data.image}" alt="image_playlist" id="image-track">
                 </div>
                 <h2>${data.data.title}</h2>
                 <p id="artist">${data.data.artist} </p>
                 <div id="container-download-track">
                     <a href="${data.data.download}" download>Download Musik</a>
-                </div>
-            </div>
-            `;
-        } else if (url.includes('spotify.com/playlist')) {
+                    </div>
+                    </div>
+                    `;
+                } else if (url.includes('spotify.com/playlist')) {
             response = await fetch(sptfyPlaylist);
             let data = await response.json();
             console.log(data)
             console.log(data.description)
+            downloadButton.style.display = "none";
             downloadLinks += `
 
             <div id="container-description-playlist">

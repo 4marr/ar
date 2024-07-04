@@ -1,6 +1,6 @@
 async function searchVideo() {
     const downloadButton = document.querySelector('button');
-    downloadButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Searching...';
+    downloadButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
     document.getElementById('downloadLinks').style.display = "inline-block";
     document.getElementById('downloadLinks').innerHTML = "";
 
@@ -53,7 +53,12 @@ async function searchVideo() {
             if (data.result.type === 'image') {
                 downloadLinks += `<p>${data.result.desc} │ ${data.result.author.nickname}</p>`;
                 data.result.images.forEach((imageUrl, index) => {
-                    downloadLinks += `<a href="${imageUrl}" download>Download Image ${index + 1}</a>`;
+                    downloadLinks += `
+                    <div id="cnainer-dwnlad">
+                    <img src="${imageUrl}" alt="image_file" id="image-file">
+                    <a href="${imageUrl}" download>Download Image ${index + 1}</a>
+                    </div>
+                    `;
                 });
                 downloadLinks += `<a href="${data.result.music}" target="_blank" download>Download Music Audio</a>`;
             } else {

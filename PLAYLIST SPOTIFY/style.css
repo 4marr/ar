@@ -64,7 +64,7 @@ body {
     flex-direction: column;
 }
 
-#downloadLinks #container-track {
+#downloadLinks > #container-track {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -87,7 +87,7 @@ body {
     align-items: center;
 }
 
-#container-track #artist {
+#container-track > #artist {
     font-size: 0.90rem;
 }
 
@@ -95,9 +95,9 @@ body {
     margin: 50px 0 0 0;
 }
 
-#container-track a {
+#container-download-track > a {
     background: #1db954;
-    margin: 50px 100px;
+    margin: 30px;
     padding: 10px;
     border-radius: 10px;
     max-width: 200px;
@@ -110,7 +110,7 @@ body {
     justify-content: center;
 }
 
-#container-image-playlist #image-playlist {
+#container-image-playlist > #image-playlist {
     width: 60%;
     display: flex;
     align-items: center;
