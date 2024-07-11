@@ -1,124 +1,193 @@
-async function searchPlaylist(){
-    const downloadButton = document.querySelector('button');
-    downloadButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-    document.getElementById('downloadLinks').style.display = "flex";
-    document.getElementById('downloadLinks').innerHTML = "";
+let loaderPlaylist = document.getElementById("loaderPlaylist");
+window.addEventListener("load", function () {
+  loaderPlaylist.style.opacity = "0";
+});
 
-    try {
-        const url = document.getElementById('urlSosmed').value;
-        if (url.trim() === '') {
-            document.getElementById('downloadLinks').innerHTML = `<p style="color: #ff0000;">Url tidak boleh kosong!</p>`;
-            return;
-        }
-        const supportedUrls = ['spotify.com/track', 'spotify.com/playlist'];
+var api = "https://itzpire.com/download/spotify";
+var apiData = "https://api.mininxd.my.id/spotify";
 
-        if (!supportedUrls.some(supportedUrl => url.includes(supportedUrl))) {
-            document.getElementById('downloadLinks').innerHTML = `<p style="color: #ff0000;">Unsupported URL! Hanya support tt/ig/fb</p>`;
-            return;
-        }
+function fetchPlaylist() {
+  var getURL = document.getElementById("url").value;
+  document.getElementById("fetchPlaylist").innerHTML = "searching...";
+  if (getURL.trim() === "") {
+    document.getElementById(
+      "downloadLinks"
+    ).innerHTML = `<p style="color: #ff0000;">Url tidak boleh kosong!</p>`;
+    document.getElementById("fetchPlaylist").innerHTML = "search";
+    return;
+  } else {
+    document.getElementById("downloadLinks").innerHTML = "";
+  }
+  const supportedUrls = ["spotify.com/track", "spotify.com/playlist"];
+  if (!supportedUrls.some((supportedUrl) => getURL.includes(supportedUrl))) {
+    document.getElementById(
+      "downloadLinks"
+    ).innerHTML = `<p style="color: #ff0000;">Unsupported URL! Hanya support tt/ig/fb</p>`;
+    document.getElementById("fetchPlaylist").innerHTML = "search";
+    return;
+  }
 
-        const sptfyTrack = `https://itzpire.com/download/spotify?url=${encodeURIComponent(url)}`
-        const sptfyPlaylist = `https://api.mininxd.my.id/spotify?url=${encodeURIComponent(url)}`
-        
-        let response, data;
-        let downloadLinks = '';  // Initialize downloadLinks
-
-        if (url.includes('spotify.com/track')) {
-            response = await fetch(sptfyTrack);
-            data = await response.json();
-            downloadButton.style.display = "none";
-            
-            downloadLinks += `
-            <div id="container-track">
-                <div id="container-image-track">
+  if (getURL.includes("spotify.com/track")) {
+    const sptfyTrack = `https://itzpire.com/download/spotify?url=${encodeURIComponent(
+      getURL
+    )}`;
+    fetch(sptfyTrack)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        let downloadLinks = document.getElementById("downloadLinks")
+      document.getElementById("fetchPlaylist").innerHTML = "search";
+        downloadLinks.innerHTML = `
+          <div id="container-track">
+              <div id="container-image-track">
                 <img src="${data.data.image}" alt="image_playlist" id="image-track">
-                </div>
-                <h2>${data.data.title}</h2>
-                <p id="artist">${data.data.artist} </p>
-                <div id="container-download-track">
-                    <a href="${data.data.download}" download>Download Musik</a>
-                    </div>
-                    </div>
-                    `;
-                } else if (url.includes('spotify.com/playlist')) {
-            response = await fetch(sptfyPlaylist);
-            let data = await response.json();
-            console.log(data)
-            console.log(data.description)
-            downloadButton.style.display = "none";
-            downloadLinks += `
+              </div>
+              <h2>${data.data.title}</h2>
+              <p id="artist">${data.data.artist} </p>
+              <div id="container-download-track">
+                <a href="${data.data.download}" download>Download Musik</a>
+              </div>
+          </div>
+        `;
+        document.getElementById("playlistTop").style.display ="none"
+        document.getElementById("listContainer").style.display ="none"
+        document.getElementById("downloadLinks").style.display ="flex"
+        const fetchButton = document.getElementById("fetchPlaylist");
+        const delButton = document.getElementById("deleteUrl");
+        fetchButton.style.display = "none";
+        delButton.style.display = "block";
+      });
+    } else if (getURL.includes("spotify.com/playlist")) {
+      fetch(`${apiData}?url=${getURL}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        console.log(getURL);
+        document.getElementById("downloadLinks").style.display ="none"
+        document.getElementById("playlistTop").style.display ="block"
+        document.getElementById("listContainer").style.display ="block"
+        listContainer.style.padding = "10px 0 10px 0";
+        const fetchButton = document.getElementById("fetchPlaylist");
+        const delButton = document.getElementById("deleteUrl");
+        fetchButton.style.display = "none";
+        delButton.style.display = "block";
 
-            <div id="container-description-playlist">
-                <div id="container-image-playlist">
-                    <img src="${data.images[0].url}" alt="image_playlist" id="image-playlist">
-                </div>
-                <h2>${data.name}</h2>
-                <p>${data.description}</p>
-                <p>${data.owner.display_name}</p>
-                <p>
-                    <span class="material-symbols-outlined">language</span>
-                    ${data.tracks.total} songs
-                </p>
-            </div>
-            `;
-            data.tracks.items.forEach(item => {
-                downloadLinks += `
-                <div id="container-downloader-song">
-                <img src="${item.track.album.images[1].url}" alt="image_album" id="image-album">
-                    <div id="container-song">
-                        <div id="container-track">
-                            <a href="">${item.track.name}</a>
-                            <p>${item.track.artists[0].name}</p>
-                        </div>
-                    </div>
-                </div>
-                    `;
-                    document.getElementById("downloadLinks").addEventListener("click", function(){
-                    var urlSong = item.track.external_urls.spotify
-                    const downloadSong = `https://api.mininxd.my.id/spotify?url=${encodeURIComponent(urlSong)}`
-                    fetch(downloadSong)
-                    .then(res => res.json())
-                    .then(data => {
-                        const containerDownload = document.getElementById("download-song")
-                        containerDownload.setAttribute("data-audio-url", data.data.download)
-                        console.log(data.data.download)
-                    })
-                });
+        for (var i = 0; i < data.tracks.items.length; i++) {
+          let song = data.tracks.items;
+          let songs = data.tracks.items[i].track.name;
+          let songId = data.tracks.items[i].track.id;
+          let artistName = data.tracks.items[i].track.artists[0].name;
+          let albumImg = data.tracks.items[i].track.album.images[1].url;
+
+          playlistName.innerHTML = data.name;
+          playlistImg.src = data.images[0].url;
+          description.innerHTML = data.description;
+          display_name.innerHTML = data.owner.display_name;
+          display_total.innerHTML = data.tracks.total + " songs";
+
+          var li = document.createElement("li");
+          li.classList.add("list");
+          var img = document.createElement("img");
+          img.classList.add("imgEl");
+          img.setAttribute("src", albumImg);
+          li.append(img);
+
+          var div = document.createElement("div");
+          div.classList.add("songInfo");
+          var span1 = document.createElement("span");
+          var span2 = document.createElement("span");
+          span1.classList.add("md-typescale-title-large", "w-600", "songName");
+          span1.innerText = songs;
+          span2.classList.add("md-typescale-body-medium", "w-400");
+          span2.innerHTML = "<br>" + artistName;
+          div.append(span1);
+          div.appendChild(span2);
+
+          var a = document.createElement("a");
+          var div1 = document.createElement("div");
+          var button = document.createElement("button");
+          var button2 = document.createElement("button");
+          button.classList.add("button");
+          button2.classList.add("button", `download${i}`);
+          var mdFillBtn = document.createElement("md-filled-button");
+          var mdFillBtn2 = document.createElement("md-filled-button");
+
+          var span_btn1 = document.createElement("span");
+          var span_btn2 = document.createElement("span");
+          a.setAttribute("href", "url.html");
+          div1.classList.add("downloadBtn");
+          span_btn1.classList.add("material-icons");
+          span_btn2.classList.add("material-icons");
+          span_btn1.innerHTML = "download";
+          span_btn2.innerHTML = "check";
+          div1.append(button);
+          div1.append(button2);
+          button.append(mdFillBtn);
+          button2.append(mdFillBtn2);
+          mdFillBtn.append(span_btn1);
+          mdFillBtn2.append(span_btn2);
+
+          button.style.fontSize = "0px";
+          button.append(i);
+          button2.style.transform = "scale(0.0001)";
+
+          li.append(div1);
+          li.append(div);
+          listContainer.append(li);
+
+          // Download Button Event
+          button.addEventListener("click", function (event) {
+            console.log(`Song name: ${songs}`);
+            console.log(`Song ID: ${songId}`);
+
+            this.disabled = true;
+            let btn2 = document.querySelector(`.${this.textContent}`);
+
+            this.innerHTML = `<md-filled-button>
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </md-filled-button>`;
+
+            fetch(`${api}?url=https://open.spotify.com/track/${songId}`, {
+              headers: { accept: "application/json" },
             })
-            /*function downloadPlaylistButton(){
-                const trackUrl = document.getAttribute("data-audio-url");
-                const a = document.createElement("a");
-                a.href = trackUrl;
-                document.body.appendChild(a);
-                a.click();
-            }*/
-    } else {
-        throw new Error('Unsupported URL!');
-    }
-    console.log('URL:', url);
-    console.log('Response:', response);
-    console.log('Data:', data);
-    console.log('Download Links:', downloadLinks);
-    document.getElementById('downloadLinks').innerHTML = downloadLinks;
-} catch (error) {
-    if (error.message === 'Unsupported URL!') {
-        alert("Unsupported URL!, Hanya support fb/ig/tt/yt");
-    } else {
-        document.getElementById('downloadLinks').innerHTML = `<p style="color: #ff0000;">Terjadi Error, pastikan link yg ingin di download bukanlah private atau coba periksa koneksi internet anda</p>`;
-    }
-    console.log(error.message);
-} finally {
-        downloadButton.innerHTML = 'Search';
-    }
+              .then((res) => {
+                return res.json();
+              })
+              .then((data) => {
+                this.style.display = "none";
+                btn2.style.transform = "scale(1)";
+                console.log(data);
+
+                btn2.addEventListener("click", function () {
+                  window.open(data.data.download).focus();
+                });
+              });
+          });
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
 }
 
+function deleteUrl() {
+  document.getElementById("url").value = "";
+  const fetchButton = document.getElementById("fetchPlaylist");
+  const delButton = document.getElementById("deleteUrl");
+  fetchButton.style.display = "block";
+  delButton.style.display = "none";
+  document.getElementById("fetchPlaylist").innerHTML = "search";
+}
 
-
-/*document.getElementById("download-song").addEventListener("click", function() {
-});*/
-
-function getValue(){
-    const downloadButton = document.querySelector('button');
-    downloadButton.style.display = "block";
-    document.getElementById('downloadLinks').style.display = "none";
+function getValue() {
+  const fetchButton = document.getElementById("fetchPlaylist");
+  const delButton = document.getElementById("deleteUrl");
+  fetchButton.style.display = "block";
+  delButton.style.display = "none";
+  document.getElementById("fetchPlaylist").innerHTML = "search";
 }
