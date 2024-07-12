@@ -58,9 +58,10 @@ const createChatLi = (message, className) => {
     return chatLi;
 }
 
+const chatId = Math.floor(Math.random() * 100000) + 1;
 let generateResponse = (incomingChatLi) => {
     const prompt = document.getElementById('message').value;
-    let apiUrl = `https://itzpire.com/ai/gpt-web?q=${encodeURIComponent(prompt)}`;
+    let apiUrl = `https://itzpire.com/ai/gpt-web?q=${encodeURIComponent(prompt)}&chat_id=${chatId}`;
     let hasil = incomingChatLi.querySelector("p")
     
     fetch(apiUrl)
