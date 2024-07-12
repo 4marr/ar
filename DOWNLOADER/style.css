@@ -17,6 +17,11 @@ p {
     font-size: 0.90rem;
 }
 
+img{
+    max-width: 500px;
+    width: 50%;
+}
+
 /*.footer {
     text-align: center;
     color: #ffffff;
@@ -58,6 +63,7 @@ p {
     animation: fadeIn 1s ease-in-out;
     text-align: center;
     width: 80%;
+    max-width: 500px;
 }
 
 h1 {

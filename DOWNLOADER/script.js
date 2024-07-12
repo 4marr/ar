@@ -73,29 +73,29 @@ async function searchVideo() {
         } /*else if (youtubeRegex.test(url)) {
             response = await fetch(yt);
             data = await response.json();
-
+            
             const { title, data: ytData } = data.result;
             downloadLinks = `<p>Karena limitasi server, Download YT harus menggunakan Bot WA. hanya tinggal klik tombol dibawah akan menuju ke nomor bot WA.<br><br>${title}</p>`;
-
+            
             if (ytData.fhd) {
                 downloadLinks += `<a href="https://wa.me/6285143582588?text=.ytdl%20${url}%20fhd" target="_blank"> Download Video FHD (1080p)<br>Size FHD: ${ytData.fhd.size}</a>`;
-            }
-            if (ytData.hd) {
-                downloadLinks += `<a href="https://wa.me/6285143582588?text=.ytdl%20${url}%20hd" target="_blank"> Download Video HD (720p)<br>Size HD: ${ytData.hd.size}</a>`;
-            }
-            if (ytData.sd) {
-                downloadLinks += `<a href="https://wa.me/6285143582588?text=.ytdl%20${url}%20sd" target="_blank"> Download Video SD (480p)<br>Size SD: ${ytData.sd.size}</a>`;
-            }
-            if (ytData.mp3) {
-                downloadLinks += `<a href="https://wa.me/6285143582588?text=.ytmp3%20${url}%20" target="_blank"> Download Audio (mp3)<br>Size MP3: ${ytData.mp3.size}</a>`;
-            }
-        }*/ else if (/(reel|fb|facebook\.com|fb\.watch)/i.test(url)) {
-            response = await fetch(fb);
+                }
+                if (ytData.hd) {
+                    downloadLinks += `<a href="https://wa.me/6285143582588?text=.ytdl%20${url}%20hd" target="_blank"> Download Video HD (720p)<br>Size HD: ${ytData.hd.size}</a>`;
+                    }
+                    if (ytData.sd) {
+                        downloadLinks += `<a href="https://wa.me/6285143582588?text=.ytdl%20${url}%20sd" target="_blank"> Download Video SD (480p)<br>Size SD: ${ytData.sd.size}</a>`;
+                        }
+                        if (ytData.mp3) {
+                            downloadLinks += `<a href="https://wa.me/6285143582588?text=.ytmp3%20${url}%20" target="_blank"> Download Audio (mp3)<br>Size MP3: ${ytData.mp3.size}</a>`;
+                            }
+                            }*/ else if (/(reel|fb|facebook\.com|fb\.watch)/i.test(url)) {
+                                response = await fetch(fb);
             data = await response.json();
             downloadButton.style.display = "none";
-        
+            
             const { hd, sd } = data.result;
-        
+            
             if (hd) {
                 downloadLinks += `<a href="${hd}" download>Download Video HD</a>`;
             }
@@ -107,31 +107,35 @@ async function searchVideo() {
             response = await fetch(sptfy);
             data = await response.json();
             downloadButton.style.display = "none";
-
+            
             downloadLinks += `<p>${data.data.title} │ ${data.data.artist} </p>`;
             downloadLinks += `<a href="${data.data.download}" download>Download Musik</a>`;
-        }*/ else if (url.includes('youtu.be')) {
-            response = await fetch(yt);
-            data = await response.json();
-            console.log(data)
+            }*/ else if (url.includes('youtu.be')) {
+                response = await fetch(yt);
+                data = await response.json();
+                console.log(data)
             downloadButton.style.display = "none";
-
-            downloadLinks += `<p>${data.data.video.title} │ ${data.data.video.channel} </p>`;
+            
+            downloadLinks += `
+            <img src="${data.data.video.thumb}" alt="image_file" id="image-file">
+            <p>${data.data.video.title} │ ${data.data.video.channel} </p>
+            `;
             downloadLinks += `<a href="${data.data.video.url}" download>Download Video</a>`;
             downloadLinks += `<a href="${data.data.audio.url}" download>Download Musik</a>`;
         } else {
             throw new Error('Unsupported URL!, Hanya support ig/fb/tt/yt');
         }
         console.log('URL:', url);
-    console.log('Response:', response);
-    console.log('Data:', data);
-    console.log('Download Links:', downloadLinks);
+        console.log('Response:', response);
+        console.log('Data:', data);
+        console.log('Download Links:', downloadLinks);
         document.getElementById('downloadLinks').innerHTML = downloadLinks;
     } catch (error) {
         if (error.message === 'Unsupported URL!, Hanya support fb/ig/tt/yt') {
             alert("Unsupported URL!, Hanya support fb/ig/tt/yt");
         } else {
             document.getElementById('downloadLinks').innerHTML = `<p style="color: #ff0000;">Terjadi Error, pastikan link yg ingin di download bukanlah private atau coba periksa koneksi internet anda</p>`;
+            downloadButton.style.display = "flex";
         }
         console.log(error.message);
     } finally {

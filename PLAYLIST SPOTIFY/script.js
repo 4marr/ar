@@ -8,12 +8,15 @@ var apiData = "https://api.mininxd.my.id/spotify";
 
 function fetchPlaylist() {
   var getURL = document.getElementById("url").value;
+  var getRL = document.getElementById("url");
+  getRL.readOnly = true;
   document.getElementById("fetchPlaylist").innerHTML = "searching...";
   if (getURL.trim() === "") {
     document.getElementById(
       "downloadLinks"
     ).innerHTML = `<p style="color: #ff0000;">Url tidak boleh kosong!</p>`;
     document.getElementById("fetchPlaylist").innerHTML = "search";
+    getRL.readOnly = false;
     return;
   } else {
     document.getElementById("downloadLinks").innerHTML = "";
@@ -22,11 +25,12 @@ function fetchPlaylist() {
   if (!supportedUrls.some((supportedUrl) => getURL.includes(supportedUrl))) {
     document.getElementById(
       "downloadLinks"
-    ).innerHTML = `<p style="color: #ff0000;">Unsupported URL! Hanya support tt/ig/fb</p>`;
+    ).innerHTML = `<p style="color: #ff0000;">Unsupported URL! Hanya support spotify`;
     document.getElementById("fetchPlaylist").innerHTML = "search";
+    getRL.readOnly = false;
     return;
   }
-
+  
   if (getURL.includes("spotify.com/track")) {
     const sptfyTrack = `https://itzpire.com/download/spotify?url=${encodeURIComponent(
       getURL
@@ -38,24 +42,21 @@ function fetchPlaylist() {
       .then((data) => {
         console.log(data);
         let downloadLinks = document.getElementById("downloadLinks")
-      document.getElementById("fetchPlaylist").innerHTML = "search";
+        document.getElementById("fetchPlaylist").innerHTML = "search";
         downloadLinks.innerHTML = `
-          <div id="container-track">
-              <div id="container-image-track">
+        <div id="container-track">
+        <div id="container-image-track">
                 <img src="${data.data.image}" alt="image_playlist" id="image-track">
-              </div>
+                </div>
               <h2>${data.data.title}</h2>
               <p id="artist">${data.data.artist} </p>
               <div id="container-download-track">
-                <a href="${data.data.download}" download>Download Musik</a>
+              <a href="${data.data.download}" download>Download Musik</a>
               </div>
-          </div>
-        `;
-        document.getElementById("playlistTop").style.display ="none"
-        document.getElementById("listContainer").style.display ="none"
-        document.getElementById("downloadLinks").style.display ="flex"
-        const fetchButton = document.getElementById("fetchPlaylist");
-        const delButton = document.getElementById("deleteUrl");
+              </div>
+              `;
+              const fetchButton = document.getElementById("fetchPlaylist");
+              const delButton = document.getElementById("deleteUrl");
         fetchButton.style.display = "none";
         delButton.style.display = "block";
       });
@@ -67,22 +68,19 @@ function fetchPlaylist() {
       .then((data) => {
         console.log(data);
         console.log(getURL);
-        document.getElementById("downloadLinks").style.display ="none"
-        document.getElementById("playlistTop").style.display ="block"
-        document.getElementById("listContainer").style.display ="block"
         listContainer.style.padding = "10px 0 10px 0";
         const fetchButton = document.getElementById("fetchPlaylist");
         const delButton = document.getElementById("deleteUrl");
         fetchButton.style.display = "none";
         delButton.style.display = "block";
-
+        
         for (var i = 0; i < data.tracks.items.length; i++) {
           let song = data.tracks.items;
           let songs = data.tracks.items[i].track.name;
           let songId = data.tracks.items[i].track.id;
           let artistName = data.tracks.items[i].track.artists[0].name;
           let albumImg = data.tracks.items[i].track.album.images[1].url;
-
+          
           playlistName.innerHTML = data.name;
           playlistImg.src = data.images[0].url;
           description.innerHTML = data.description;
@@ -95,7 +93,7 @@ function fetchPlaylist() {
           img.classList.add("imgEl");
           img.setAttribute("src", albumImg);
           li.append(img);
-
+          
           var div = document.createElement("div");
           div.classList.add("songInfo");
           var span1 = document.createElement("span");
@@ -106,7 +104,7 @@ function fetchPlaylist() {
           span2.innerHTML = "<br>" + artistName;
           div.append(span1);
           div.appendChild(span2);
-
+          
           var a = document.createElement("a");
           var div1 = document.createElement("div");
           var button = document.createElement("button");
@@ -134,30 +132,30 @@ function fetchPlaylist() {
           button.style.fontSize = "0px";
           button.append(i);
           button2.style.transform = "scale(0.0001)";
-
+          
           li.append(div1);
           li.append(div);
           listContainer.append(li);
-
+          
           // Download Button Event
           button.addEventListener("click", function (event) {
             console.log(`Song name: ${songs}`);
             console.log(`Song ID: ${songId}`);
-
+            
             this.disabled = true;
             let btn2 = document.querySelector(`.${this.textContent}`);
-
+            
             this.innerHTML = `<md-filled-button>
-    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-    </md-filled-button>`;
-
+            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            </md-filled-button>`;
+            
             fetch(`${api}?url=https://open.spotify.com/track/${songId}`, {
               headers: { accept: "application/json" },
             })
-              .then((res) => {
-                return res.json();
-              })
-              .then((data) => {
+            .then((res) => {
+              return res.json();
+            })
+            .then((data) => {
                 this.style.display = "none";
                 btn2.style.transform = "scale(1)";
                 console.log(data);
@@ -166,22 +164,18 @@ function fetchPlaylist() {
                   window.open(data.data.download).focus();
                 });
               });
-          });
-        }
+            });
+          }
       })
       .catch((e) => {
         console.log(e);
+        getRL.readOnly = false;
       });
-  }
+    }
 }
 
 function deleteUrl() {
-  document.getElementById("url").value = "";
-  const fetchButton = document.getElementById("fetchPlaylist");
-  const delButton = document.getElementById("deleteUrl");
-  fetchButton.style.display = "block";
-  delButton.style.display = "none";
-  document.getElementById("fetchPlaylist").innerHTML = "search";
+  window.location.reload()
 }
 
 function getValue() {

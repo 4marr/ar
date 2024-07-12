@@ -56,6 +56,7 @@ p {
 .container-button button {
   cursor: pointer;
   width: 25%;
+  max-width: 100px;
   height: 30px;
   background: #1db954;
   color: #ffffff;
@@ -203,7 +204,6 @@ p {
   padding: 10px 0;
   font-size: 20px;
   height: 50px;
-  border-radius: 50px;
   color: #ffffff;
 }
 .list-container > .list > .imgEl {
@@ -212,6 +212,7 @@ p {
 }
 .list-container > .list > .songInfo {
   margin-left: 10px;
+  margin-top: 2px;
   flex-wrap: nowrap;
   max-width: 75%;
   font-size: 0.6rem;
@@ -220,7 +221,7 @@ p {
 .list-container > .list > .songInfo > .songName {
   overflow-x: scroll;
   overflow-y: none;
-  max-width: 75%;
+  max-width: 60%;
   font-size: 0.75rem;
   color: #ffffff;
 }
@@ -228,8 +229,9 @@ p {
 .downloadBtn {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   right: 10px;
-  margin-top: 2px;
   width: fit-content;
   position: absolute;
 }
