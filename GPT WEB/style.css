@@ -6,7 +6,7 @@
     --background-input: #262626;
     --text-color: #FFFFFF;
     --text-color-client: #FFFFFF;
-    --span-color: #405DE6;
+    --span-color: #74AA9C;
 }
 
 .lightTheme {
@@ -14,7 +14,7 @@
     --background-input: #F0F0F5;
     --text-color: #0F1921;
     --text-color-client: #FFFFFF;
-    --span-color: #405DE6;
+    --span-color: #74AA9C;
 }
 
 * {

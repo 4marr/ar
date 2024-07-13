@@ -142,7 +142,7 @@ p{
 
 .list a:nth-child(2):hover{
     box-shadow: 2px 2px 0 #000000;
-    animation: Gradient-ania 2s infinite alternate;
+    animation: Gradient-ania 0.5s forwards;
 }
 
 @keyframes Gradient-ania {
