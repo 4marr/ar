@@ -110,7 +110,8 @@ p{
 }
 
 .list a:nth-child(2){
-    background: #E3A018;
+    background: linear-gradient(90deg, rgba(64,93,230,1) 0%, rgba(131,58,180,1) 50%, rgba(225,48,108,1) 100%);
+    background-size: 200%;
 }
 
 .list a:nth-child(3){
@@ -122,10 +123,14 @@ p{
 }
 
 .list a:nth-child(5){
-    background: #00995E;
+    background: #E3A018;
 }
 
 .list a:nth-child(6){
+    background: #00995E;
+}
+
+.list a:nth-child(7){
     background: #9723C9;
 }
 
@@ -136,9 +141,16 @@ p{
 }
 
 .list a:nth-child(2):hover{
-    color: #000000;
     box-shadow: 2px 2px 0 #000000;
-    background: #FDFD96;
+    animation: Gradient-ania 2s infinite alternate;
+}
+
+@keyframes Gradient-ania {
+    0% {
+        background-position: left;
+    } 100% {
+        background-position: right;
+    }
 }
 
 .list a:nth-child(3):hover{
@@ -156,10 +168,16 @@ p{
 .list a:nth-child(5):hover{
     color: #000000;
     box-shadow: 2px 2px 0 #000000;
-    background: #C6E8DB;
+    background: #FDFD96; 
 }
 
 .list a:nth-child(6):hover{
+    color: #000000;
+    box-shadow: 2px 2px 0 #000000;
+    background: #C6E8DB;
+}
+
+.list a:nth-child(7):hover{
     color: #000000;
     box-shadow: 2px 2px 0 #000000;
     background: #E3DFF2;

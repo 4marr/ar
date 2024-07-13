@@ -18,30 +18,13 @@ function closeFaq() {
 
 var iconTheme = document.getElementById("theme-button")
 function changeTheme(){
-    document.body.classList.toggle("lightTheme")
-    if(document.body.classList.contains("lightTheme")){
-        iconTheme.innerText = "dark_mode";
-    }else{
+    document.body.classList.toggle("darkTheme")
+    if(document.body.classList.contains("darkTheme")){
         iconTheme.innerText = "light_mode";
+    }else{
+        iconTheme.innerText = "dark_mode";
     }
 }
-
-var greetElem = document.getElementById("greetings");
-var curHr = new Date().getHours();
-var greetMes = ["Wow! Masih Begadang?",
-    "Selamat Pagi.",
-    "Selamat Siang.",
-    "Selamat Sore.",
-    "Selamat Malam.",
-    "Belum Tidur ya?"];
-let greetText = "";
-if (curHr < 4) greetText = greetMes[0];
-else if (curHr < 10) greetText = greetMes[1];
-else if (curHr < 16) greetText = greetMes[2];
-else if (curHr < 18) greetText = greetMes[3];
-else if (curHr < 22) greetText = greetMes[4];
-else greetText = greetMes[5];
-greetElem.setAttribute('data-content', greetText);
 
 let chatInput = document.querySelector(".chat-input input");
 const sendChatBtn = document.querySelector(".chat-input span");
@@ -58,11 +41,10 @@ const createChatLi = (message, className) => {
     return chatLi;
 }
 
-const chatId = Math.floor(Math.random() * 100000) + 1;
 let generateResponse = (incomingChatLi) => {
     const prompt = document.getElementById('message').value;
-    let apiUrl = `https://itzpire.com/ai/gpt-web?q=${encodeURIComponent(prompt)}&chat_id=${chatId}`;
-    console.log(apiUrl)
+    var percakapanTerakhir;
+    let apiUrl = `https://api.nyxs.pw/ai/gemini?text=${encodeURIComponent(prompt)}`;
     let hasil = incomingChatLi.querySelector("p")
     
     fetch(apiUrl)
