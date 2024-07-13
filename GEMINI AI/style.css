@@ -211,7 +211,7 @@ p {
     -webkit-text-fill-color: transparent;
     background-size: 250%;
     animation: Gradient-ania 2s forwards;
-    animation-delay: 1s;
+    animation-delay: 0.5s;
 }
 
 @keyframes Gradient-ania {
