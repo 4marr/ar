@@ -32,6 +32,7 @@ async function searchVideo() {
         const tt = `https://api.nyxs.pw/dl/tiktok?url=${encodeURIComponent(url)}`;
         //const yt = `https://api.nyxs.pw/dl/yt?url=${encodeURIComponent(url)}`;
         const yt = `https://itzpire.com/download/youtube?url=${encodeURIComponent(url)}`
+        const Playt = `https://itzpire.com/download/play-youtube?title=${encodeURIComponent(url)}`
         const fb = `https://api.nyxs.pw/dl/fb?url=${encodeURIComponent(url)}`;
         const sptfy = `https://itzpire.com/download/spotify?url=${encodeURIComponent(url)}`
 
@@ -50,19 +51,19 @@ async function searchVideo() {
             data = await response.json();
             downloadButton.style.display = "none";
 
-            if (data.result.type === 'image') {
-                downloadLinks += `<p>${data.result.desc} │ ${data.result.author.nickname}</p>`;
+            if (data.result.type === 'images') {
+                // downloadLinks += `<p>${data.result.desc} │ ${data.result.author.nickname}</p>`;
                 data.result.images.forEach((imageUrl, index) => {
                     downloadLinks += `
                     <div id="cnainer-dwnlad">
-                    <img src="${imageUrl}" alt="image_file" id="image-file">
-                    <a href="${imageUrl}" download>Download Image ${index + 1}</a>
+                        <img src="${imageUrl}" alt="image_file" id="image-file">
+                        <a href="${imageUrl}" download>Download Image ${index + 1}</a>
                     </div>
                     `;
                 });
                 downloadLinks += `<a href="${data.result.music}" target="_blank" download>Download Music Audio</a>`;
             } else {
-                downloadLinks += `<p>${data.result.desc} │ ${data.result.author.nickname}</p>`;
+                // downloadLinks += `<p>${data.result.desc} │ ${data.result.author.nickname}</p>`;
                 downloadLinks += `
                     <a href="${data.result.video1}" target="_blank" download>Download Video</a>
                     <a href="${data.result.video_hd}" target="_blank" download>Download HD Video</a>
@@ -123,7 +124,9 @@ async function searchVideo() {
             downloadLinks += `<a href="${data.data.video.url}" download>Download Video</a>`;
             downloadLinks += `<a href="${data.data.audio.url}" download>Download Musik</a>`;
         } else {
-            throw new Error('Unsupported URL!, Hanya support ig/fb/tt/yt');
+            response = await fetch(tt);
+            data = await response.json();
+            downloadButton.style.display = "none";
         }
         console.log('URL:', url);
         console.log('Response:', response);
