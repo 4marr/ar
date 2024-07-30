@@ -1,3 +1,5 @@
+window.open("https://4marr.github.io/dashboard/")
+
 function login(){
     let text = "Client Login"
     let gabungan = text;
